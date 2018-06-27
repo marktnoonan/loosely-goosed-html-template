@@ -1,6 +1,6 @@
 {
 	"name": "loosely-goosed-html-template",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "A(nother) very small HTML templating engine.",
 	"main": "lght.js",
 	"scripts": {
@@ -14,7 +14,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://www.npmjs.com/package/loosely-goosed-html-template"
+		"url": "https://github.com/marktnoonan/loosely-goosed-html-template"
 	},
 	"author": "Mark Noonan",
 	"license": "MIT"
