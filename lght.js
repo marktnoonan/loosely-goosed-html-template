@@ -86,5 +86,3 @@ const lght = {
 		}
 	}
 };
-
-export default lght;
