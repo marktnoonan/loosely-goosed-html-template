@@ -14,7 +14,17 @@ Can be installed via npm, or downloaded directly from this repo (lght.js is the 
 npm install loosely-goosed-html-template --save
 ```
 
-Then include the script at the end of your `<body>` element `<script src="path/to/lght.js"></script>`. And include any of your JS code that uses Loosely Goosed HTML Template below this in your document.
+Then include the script at the end of your `<body>` element lik `<script src="path/to/lght.js"></script>`. 
+
+For the least amount of work you could also load it from the jsdlivr CDN:
+
+```
+<script src="https://www.jsdelivr.com/package/npm/loosely-goosed-html-template"></script>
+```
+
+This will create a global object, `lght` which you will use to interact with the templating functionality.
+
+And include any of your JS code that uses Loosely Goosed HTML Template below this in your document.
 
 ## Usage
 
