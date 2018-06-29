@@ -184,7 +184,7 @@ The separation of concerns here is at a truly obnoxious level, forcing all logic
 
 ## Conclusion
 
-This has been a fun way to explore how templating engines work and the kinds of challenges faced when building them. It's a task that on the surface seems very simple.
+This has been a fun way to explore how templating engines work and the kinds of challenges faced when building them. It's a task that on the surface seems very simple, but when you get into it, it forces you to make all kinds of decisions and tradeoffs.
 
 ## Production
 
@@ -203,6 +203,3 @@ Distributed under the MIT license. See ``LICENSE`` for more information.
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
-
-<!-- Markdown link & img dfn's -->
-[npm-url]: https://www.npmjs.com/package/loosely-goosed-html-template
