@@ -19,7 +19,7 @@ Then include the script at the end of your `<body>` element lik `<script src="pa
 For the least amount of work you could also load it from the jsdlivr CDN:
 
 ```
-<script src="https://www.jsdelivr.com/package/npm/loosely-goosed-html-template"></script>
+<script src="https://cdn.jsdelivr.net/npm/loosely-goosed-html-template@0.1.3/lght.js"></script>
 ```
 
 This will create a global object, `lght` which you will use to interact with the templating functionality.
