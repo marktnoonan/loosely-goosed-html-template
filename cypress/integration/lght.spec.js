@@ -13,4 +13,22 @@ describe("Loosely Goosed HTML Template", function() {
 		cy.contains("Drawbacks");
 		cy.contains("Conclusion");
 	});
+
+	it("Renders a new aricle", () => {
+		cy.window().then(win => {
+			win.lght.addContentToTarget({
+				templateSelector: "#article-template",
+				targetSelector: "#article",
+				templateData: {
+					title: "Hello There",
+					text: "This is some text.",
+					anotherThing: "Here is the other thing.",
+					aNumber: Math.floor(Math.random() * 100 + 1),
+					ipsum: Date.now()
+				}
+			});
+		});
+		cy.contains("Hello There");
+		cy.contains("Here is the other thing.");
+	});
 });
