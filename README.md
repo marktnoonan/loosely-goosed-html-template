@@ -28,6 +28,8 @@ And include any of your JS code that uses Loosely Goosed HTML Template below thi
 
 ## Usage
 
+[![Screen shot from video demo](https://img.youtube.com/vi/wvn6xXBwdaA/0.jpg)](https://www.youtube.com/watch?v=wvn6xXBwdaA)
+
 First, define a template in your HTML. This example uses the `template` element because it is hidden when the page loads. But loosely-goosed templates can be stored in any element, and there are cases where you might prefer the template itself to be displayed to the user, even when empty. All it really needs is an `id` attribute that we can use later to refer to it, and some HTML inside that forms the template itself.
 
 Here is an example: 
