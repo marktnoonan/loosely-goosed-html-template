@@ -14,21 +14,35 @@ describe("Loosely Goosed HTML Template", function() {
 		cy.contains("Conclusion");
 	});
 
-	it("Renders a new aricle", () => {
+	it("Renders a new aricle with all acceptable property types", () => {
 		cy.window().then(win => {
 			win.lght.addContentToTarget({
 				templateSelector: "#article-template",
 				targetSelector: "#article",
 				templateData: {
 					title: "Hello There",
-					text: "This is some text.",
-					anotherThing: "Here is the other thing.",
-					aNumber: Math.floor(Math.random() * 100 + 1),
-					ipsum: Date.now()
+					anotherThing: ["array", "test"].join(""),
+					aNumber: 4000,
+					ipsum: true
 				}
 			});
 		});
 		cy.contains("Hello There");
-		cy.contains("Here is the other thing.");
+		cy.contains("4000");
+		cy.contains("true");
+	});
+
+	it("throws an error when trying to iterpolate an object or array", () => {
+		cy.window().then(win => {
+			expect(() => {
+				win.lght.addContentToTarget({
+					templateSelector: "#article-template",
+					targetSelector: "#article",
+					templateData: {
+						title: ["Hello There"]
+					}
+				});
+			}).to.throw();
+		});
 	});
 });

@@ -10,10 +10,11 @@ const lght = {
 			if (
 				newTemplate.includes("{" + prop + "}") &&
 				typeof newString !== "string" &&
-				typeof newString !== "number"
+				typeof newString !== "number" &&
+				typeof newString !== "boolean"
 			) {
 				throw new Error(
-					`Properties in the 'templateData' object must be strings or numbers in order for the template to render correctly, ${prop} has type of: ${typeof newString}`
+					`Properties in the 'templateData' object must be evaluate to strings, booleans or numbers in order for the template to render correctly, ${prop} has type of: ${typeof newString}`
 				);
 			}
 			newTemplate = newTemplate.replace(searchRegexp, templateData[prop]);
