@@ -14,7 +14,7 @@ const lght = {
 				typeof newString !== "boolean"
 			) {
 				throw new Error(
-					`Properties in the 'templateData' object must be evaluate to strings, booleans or numbers in order for the template to render correctly, ${prop} has type of: ${typeof newString}`
+					`Properties in the 'templateData' object must evaluate to strings, booleans or numbers in order for the template to render correctly, ${prop} has type of: ${typeof newString}`
 				);
 			}
 			newTemplate = newTemplate.replace(searchRegexp, templateData[prop]);
