@@ -4,7 +4,7 @@
 	"description": "A(nother) very small HTML templating engine.",
 	"main": "lght.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "node_modules/.bin/cypress open"
 	},
 	"keywords": [
 		"html",
@@ -17,5 +17,8 @@
 		"url": "https://github.com/marktnoonan/loosely-goosed-html-template"
 	},
 	"author": "Mark Noonan",
-	"license": "MIT"
+	"license": "MIT",
+	"devDependencies": {
+		"cypress": "^3.0.2"
+	}
 }
