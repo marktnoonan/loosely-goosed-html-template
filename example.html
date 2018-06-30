@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Loosely Goosed HTML Template</title>
+	<link rel="stylesheet" href="bare.min.css" type="text/css">
+	<style>
+		main {
+			max-width: 600px;
+			margin: 0 auto;
+		}
+
+		article {
+			border: 1px solid rgba(0, 0, 128, 0.158);
+			padding: 14px;
+			margin-bottom: 10px;
+		}
+
+		q {
+			quotes: '“' '”' '‘' '’' '“' '”' '‘' '’';
+		}
+
+		a {
+			font-weight: bold;
+		}
+
+		*:empty {
+			margin: 0 !important;
+			padding: 0 !important;
+			height: 0 !important;
+		}
+	</style>
+</head>
+
+<body>
+	<main>
+		<h1>Extremely minimal template demo</h1>
+		<p>
+			Each of the articles below is generated from a plain JavaScript object and a plain HTML template. Most of the CSS is provided
+			by the niftly little library,
+			<a href="http://barecss.com/">Bare CSS</a>.
+		</p>
+		<div id="article">
+		</div>
+	</main>
+
+	<!-- This is our template section -->
+	<template id="article-template" class="template">
+		<article>
+			<h2>{title}</h2>
+			<p>{text}</p>
+			<p>{anotherThing}</p>
+			<p> This part is hard-coded:
+				<q>A
+					<q>nested
+						<q>quotation</q>
+					</q> from another person.</q>
+			</p>
+			<blockquote>
+				<p>{title}</p>
+				<p>-
+					<i>Now the title is in a blockquote!</i>
+				</p>
+			</blockquote>
+			<p>A random number generated at runtime: {aNumber}.</p>
+			<p>{lorem}</p>
+			<p>{ipsum}</p>
+			<div id="starwars-target-{index}">
+				<span class="loading">Loading a Star Wars character from swapi.co</span>
+			</div>
+		</article>
+	</template>
+
+	<!-- <template id="starwars-template">
+		<b>A random character from the
+			<a href="https://swapi.co/">Star Wars API</a>. This section uses a sepate template whose target element is inside the article template:
+		</b>
+		<br>
+		<br>
+		<b>Name</b>: {name}
+		<br>
+		<b>Hair Color</b>: {hair_color}
+		<br>
+		<b>Eye Color</b>: {eye_color}
+	</template> -->
+
+	<script src="lght.js">	</script>
+	<script>
+		const arrayOfArticles = [
+			{
+				title: "Introduction",
+				text:
+					"These articles are a mix of hard-coded values and dynamic content. Hard-coded content is part of the template, and dynamic content for each article is loaded from a JavaScript object.",
+				anotherThing:
+					"The templates are stored in the HTML of the page itself. You can use a HTML <code>template</code> element for this, but you don't have to - most other elements will do (though other elements need to have <code>display:none</code> set on them). The data for the articles can come from anywhere, as long as it ends up as an object. ",
+				aNumber: Math.floor(Math.random() * 100 + 1),
+				$callback: function () {
+					console.log("I rendered the first article!")
+				}
+			},
+			{
+				title: "Advantages",
+				text:
+					"This way, in small projects, you can manage your HTML templates as HTML. Not a template literal, not JSX, not Handlebars in a script tag. Just a regular HTML element with some <code>{familiar syntax!}</code> for pulling data out of an object.",
+				anotherThing:
+					"This means you are free to use all your text-editor's features for generating, editing, and formatting HTML in your templates. But you also have the full power of JavaScript available in order to populate those templates with data, either as single objects or as an array of objects to iterate through.",
+				aNumber: Math.floor(Math.random() * 100 + 1)
+			},
+			{
+				title: "Drawbacks",
+				text:
+					"This is a <i>very</i> minimal templating function (less than 100 lines of JS). It does not handle nested data, loops, if/else statments, etc. If you need those things <em>in your template</em>, maybe use Mustache, Handlebars, hyperHTML, or lit-html. And if you need all of that plus a bag of reactivity, you might want a front-end framework like Vue, React, Glimmer, Svelte, what have you.",
+				anotherThing:
+					"The separation of concerns here is at a truly obnoxious level, forcing all logic into your JS. There is one special property that you can add to your data objects, however: a $callback that will run when the the result of that template has been added to the DOM.",
+				aNumber: Math.floor(Math.random() * 100 + 1),
+				ipsum: `A timestamp from page load: ${Date.now()}.`
+			},
+			{
+				title: "Conclusion",
+				text: `This library does one sequence of things well: <ol>
+					<li>It looks at a key from an object.</li> 
+					<li>If the value returned from that key is a string or a number, it checks the template and finds every occurance of <code>{key!}</code>, and replaces it with the value specified in the object.</li>
+					<li>It throws an error if any of the values referred to in the template does not return a string or number.</li>
+					<li>After doing this for every key in the object, it remove any <code>{!key}</code> that was in the template but not in the related object, and puts a warning in the console, listing those "missing" keys.</li>
+					</ol>`,
+				anotherThing:
+					"Loading states are possible. Within any template target, a single element with class <code>loading</code> will be displayed until the first templated content has been pushed to that target. At that point the element with class <code>loading</code> is itself removed from the DOM.",
+				aNumber: Math.floor(Math.random() * 100 + 1),
+				ipsum: `A timestamp from page load: ${Date.now()}.`,
+				$callback: function () {
+					console.log("I've rendered the conclusion")
+				}
+			},
+			{
+				title: "Isn't this needlessly complicated?",
+				text: "Definitely. Without a doubt.",
+				aNumber: Math.floor(Math.random() * 100 + 1)
+			}
+		];
+
+		// this is the main way of using lght
+		lght.addContentToTarget({
+			templateSelector: "#article-template",
+			targetSelector: "#article",
+			templateData: arrayOfArticles
+		});
+
+		const articleData = {
+			title: "Hello There",
+			text: "This is some text.",
+			anotherThing: "Here is the other thing.",
+			aNumber: Math.floor(Math.random() * 100 + 1),
+			ipsum: Date.now()
+		};
+
+		// lght.addContentToTarget({
+		// 	templateSelector: "#article-template",
+		// 	targetSelector: "#article",
+		// 	templateData: articleData
+		// });
+
+		// function randomStarWarsPerson(index = "") {
+		// 	let randomId = Math.floor(Math.random() * 87 + 1);
+		// 	while (randomId === 17) {
+		// 		// this one doesn't return anything
+		// 		randomId = Math.floor(Math.random() * 87 + 1);
+		// 	}
+		// 	var url = "https://swapi.co/api/people/" + randomId;
+
+		// 	var xhr = new XMLHttpRequest();
+		// 	xhr.onreadystatechange = function () {
+		// 		if (this.readyState == 4 && this.status == 200) {
+		// 			var personInfo = JSON.parse(xhr.responseText);
+		// 			personInfo.$callback = function () {
+		// 				console.log(xhr.responseText);
+		// 				console.log("I added a StarWars person!");
+		// 			};
+		// 			lght.addContentToTarget({
+		// 				templateSelector: "#starwars-template",
+		// 				targetSelector: "#starwars-target-" + index,
+		// 				templateData: personInfo
+		// 			});
+		// 		}
+		// 	};
+		// 	xhr.open("GET", url);
+		// 	xhr.send();
+		// }
+
+
+	</script>
+
+</body>
+
+</html>

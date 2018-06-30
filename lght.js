@@ -86,3 +86,8 @@ const lght = {
 		}
 	}
 };
+
+if (window) {
+	// make this globally available in spite of potential bundler-related shenanigans
+	window.lght = lght;
+}
