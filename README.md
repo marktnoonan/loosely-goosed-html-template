@@ -28,6 +28,8 @@ As long as you include any of your JS code that uses Loosely Goosed HTML Templat
 
 ## Usage
 
+You can see the process creating and populating a basic template in the [video demo](https://www.youtube.com/watch?v=wvn6xXBwdaA).
+
 First, define a template in your HTML. This example uses the `template` element because it is hidden when the page loads. But loosely-goosed templates can be stored in any element, and there are cases where you might prefer the template itself to be displayed to the user, even when empty. All it really needs is an `id` attribute that we can use later to refer to it, and some HTML inside that forms the template itself.
 
 Here is an example:
