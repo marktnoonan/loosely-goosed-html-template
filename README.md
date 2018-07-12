@@ -128,7 +128,7 @@ Your `templateData` object has one trick up its sleeve: the optional `$callback`
 
 #### Loading States
 
-Sometimes you might want to show something in your template's target location until the template has rendered. To do this, place one element inside with the class of "loading" and it will be displayed only until the actual content has been rendered. This is useful if your data requires a network request.
+Sometimes you might want to show something in your template's target location until a template has rendered. To do this, place one element inside with the class of "loading" and it will be displayed only until the actual content has been rendered. This is useful if your data requires a network request.
 
 ```html
 <div id="starwars-target">
@@ -138,11 +138,11 @@ Sometimes you might want to show something in your template's target location un
 
 #### Rendering Templates Within Other Templates
 
-This is possible, but again if you find this happening much you probably need to upgrade your experience to a "real" templating engine. As long as every `targetSelector` is unique and the target element is in the DOM by the time you call `lght.addContentToTarget`, a template that renders to a target that is inside another template will work just fine.
+This is possible, but if you find this happening much you probably need to upgrade your experience to a "real" templating engine. As long as every `targetSelector` is unique and the target element is in the DOM by the time you call `lght.addContentToTarget`, a template that renders to a target that is inside another template will work just fine.
 
-This is something you can do inside the `$callback` function, because it is guaranteed to run after the template has been rendered, so if the template contains a target element, it will be available to you by the time the callback runs.
+This is something you can do inside the `$callback` function of the parent template, because it is guaranteed to run after the template has been rendered, so if the template contains a target element, it will definitely be available to you by the time the callback runs.
 
-You could do this indefinitely. But that would be madness.
+You could do this indefinitely, nesting templates and targets inside each other as deep as you like. But that would be madness.
 
 #### Forgivness when properties are not found in the data object
 
@@ -174,7 +174,7 @@ And just ensure that it has the right content.
 
 ## Advantages
 
-This way, in small projects, you can manage your HTML templates as HTML. Not a template literal, not JSX, not Handlebars in a script tag. Just a regular HTML element with some `{familiar syntax}` for pulling data out of an object.
+In small projects, you can manage your HTML templates as HTML. Not a template literal, not JSX, not Handlebars in a script tag. Just a regular HTML element with some `{familiar syntax}` for pulling data out of an object.
 
 This means you are free to use all your text-editor's features for generating, editing, and formatting HTML in your templates. But you also have the full power of JavaScript available in order to populate those templates with data, either as single objects or as an array of objects to iterate through.
 
@@ -190,7 +190,7 @@ This has been a fun way to explore how templating engines work and the kinds of 
 
 ## Production
 
-Good Heavens. Do not use this in production.
+Well.
 
 ## Meta
 
