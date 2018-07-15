@@ -120,9 +120,32 @@ const data = {
 
 _NOTE_: It's not good practice to just render whatever is provided by an external API as HTML on your own site. Be wise, sanitize: [DOMPurify](https://github.com/cure53/DOMPurify) can be used to clean strings if you don't know for sure that they are safe to inject into your web page.
 
-Templates also have no syntax for if/else statements or loops. If you feel you need this in your template, you might be looking for Mustache, Handlebars, or similar libraries that have already nailed these problems.
+Templates also have no syntax for if/else statements or loops. If you feel you need these _in your template_, you might be looking for Mustache, Handlebars, or similar libraries that have already nailed these problems.
+
+
 
 ## Some Mildly Advanced Funny Business
+
+#### Repeated Elements
+
+Though there is no syntax for looping within the template itself, a helper function called `arrayToHTMLString` is provided to massage an array of items into a string of repeated HTML elements. Its parameters are they array to act on, the HTML tag to wrap each item in, and the attributes that should be added to that tag when it is rendered.
+
+```js
+lght.arrayToHTMLString({ 
+	array: ["list item 1", "list item 2", "list item 3"], 
+	itemWrapperTagName: "li", 
+	wrapperTagAttributeString: 'class="fancy"' }
+));
+```
+
+This function call will return the following, which can be assigned property on your templateData object:
+
+```
+<li class="fancy">list item 1</li><li class="fancy">list item 2</li><li class="fancy">list item 3</li>
+```
+
+This keeps all your logic in JS but bumps you up against the practical reality of why 100% purity in things like this can sometimes increase complexity and make the code itself harder to reason about.
+
 
 #### Callbacks
 
@@ -192,7 +215,7 @@ This has been a fun way to explore how templating engines work and the kinds of 
 
 ## Production
 
-Well.
+Well. Probably don't use this in production.
 
 ## Meta
 
