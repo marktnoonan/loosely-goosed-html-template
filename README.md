@@ -171,7 +171,7 @@ You could do this indefinitely, nesting templates and targets inside each other 
 
 #### Forgivness when properties are not found in the data object
 
-If a template refers to `{someProp}` and `someProp` does not exist on the data object, `{someProp}` will be replaced by an empty string. A warning will be logged to the console about this, listing any "missing" props. If the missing data causes weird spacing in the template, a CSS rule like the below can be very useful. This will squish, say, and empty `p` tag so that it's not taking up space. Just place this in your CSS:
+If a template refers to `{someProp}` and `someProp` does not exist on the data object, `{someProp}` will be replaced by an empty string. A warning will be logged to the console about this, listing any "missing" props. If the missing data causes weird spacing in the template, a CSS rule like the below can be very useful. This will squish, say, and empty `p` tag so that it's not taking up space.
 
 ```css
 *:empty {
@@ -196,6 +196,22 @@ DON'T DO THIS THOUGH, it's also madness. The best thing would be to handle all o
 ```
 
 And just ensure that it has the right content.
+
+#### Escaping {somePropName}!
+
+If you need to use {thisSyntax} and do NOT want it parsed or ovewritten in the template, you can include an exclamation point inside the curly braces like this:
+
+```html
+{example!}
+```
+
+and LGHT will render
+
+```html
+{example}
+```
+with no exclamation point. So you can use Loosely Goosed HTML Template to talk about Loosely Goosed HTML Template... or JSX.
+
 
 ## Advantages
 
