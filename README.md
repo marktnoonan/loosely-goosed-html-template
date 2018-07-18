@@ -138,14 +138,31 @@ lght.arrayToHTMLString({
 ));
 ```
 
-This function call will return the following, which can be assigned property on your templateData object:
+This function call will return the following string:
 
+```js
+'<li class="fancy" id="array-item-0">list item 1</li><li class="fancy" id="array-item-1">list item 2</li><li class="fancy" id="array-item-1">list item 3</li>'
 ```
-<li class="fancy">list item 1</li><li class="fancy">list item 2</li><li class="fancy">list item 3</li>
-```
+
+A way to use this would be to use process your data a little bit and create an object that ready for templating, instead of trying to make your template work within the structure of a JSON response you might get from an external API. As a bonus: if that API changes, you know you only need to catch those changes in your adapater function.
 
 This keeps all your logic in JS but bumps you up against the practical reality of why 100% purity in things like this can sometimes increase complexity and make the code itself harder to reason about.
 
+##### Unique IDs on repeated elements
+
+By default repeated elements will receive an id of `array-item-0`, `array-item-1`, and so on. These are globally unique, but if you need a different format of ID, you can pass an argument called `idGenerator` to `lght.arrayToHTMLString`. It should be a reference to a an already-instantiated Generator object. Internally, Loosely Goosed HTML Template does it with an immediately-invoked function expression (IIFE) on the lght object itself, so it runs once on pageload:
+
+```js
+const lght = {
+...
+ repeatedItemIdGenerator: (function*() {
+    let i = 0;
+    while (i < i + 1) {
+      yield `array-item-${i++}`;
+    }
+  })()
+...
+```
 
 #### Callbacks
 
