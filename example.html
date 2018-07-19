@@ -66,6 +66,10 @@
 				</p>
 			</blockquote>
 			<p>A random number generated at runtime: {aNumber}.</p>
+			<h3>{listItemHeader}</h3>
+			<ul>
+				{listItems}
+			</ul>
 			<p>{lorem}</p>
 			<p>{ipsum}</p>
 			<div id="starwars-target-{index}">
@@ -99,7 +103,9 @@
 				aNumber: Math.floor(Math.random() * 100 + 1),
 				$callback: function () {
 					console.log("I rendered the first article!")
-				}
+				},
+				listItems: lght.arrayToHTMLString({ array: ["list item 1", "list item 2", "list item 3"], itemWrapperTagName: "li", wrapperTagAttributeString: `class="fancy" mid="hello"` }),
+				listItemHeader: "Some list items!"
 			},
 			{
 				title: "Advantages",
@@ -107,7 +113,19 @@
 					"This way, in small projects, you can manage your HTML templates as HTML. Not a template literal, not JSX, not Handlebars in a script tag. Just a regular HTML element with some <code>{familiar syntax!}</code> for pulling data out of an object.",
 				anotherThing:
 					"This means you are free to use all your text-editor's features for generating, editing, and formatting HTML in your templates. But you also have the full power of JavaScript available in order to populate those templates with data, either as single objects or as an array of objects to iterate through.",
-				aNumber: Math.floor(Math.random() * 100 + 1)
+				aNumber: Math.floor(Math.random() * 100 + 1),
+				listItems: lght.arrayToHTMLString({
+					array: ["list item 1", "list item 2", "list item 3"],
+					itemWrapperTagName: "li",
+					wrapperTagAttributeString: `class="fancy" mid="hello"`,
+					idGenerator: (function* () {
+						let i = 0;
+						while (i < i + 1) {
+							yield `custom-id-from-item-${i++}`;
+						}
+					})()
+				}),
+				listItemHeader: "Some list items!"
 			},
 			{
 				title: "Drawbacks",
@@ -116,7 +134,9 @@
 				anotherThing:
 					"The separation of concerns here is at a truly obnoxious level, forcing all logic into your JS. There is one special property that you can add to your data objects, however: a $callback that will run when the the result of that template has been added to the DOM.",
 				aNumber: Math.floor(Math.random() * 100 + 1),
-				ipsum: `A timestamp from page load: ${Date.now()}.`
+				ipsum: `A timestamp from page load: ${Date.now()}.`,
+				listItems: lght.arrayToHTMLString({ array: ["list item 1", "list item 2", "list item 3"], itemWrapperTagName: "li", wrapperTagAttributeString: `class="fancy"` }),
+
 			},
 			{
 				title: "Conclusion",

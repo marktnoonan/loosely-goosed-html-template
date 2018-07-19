@@ -1,28 +1,28 @@
 {
-	"name": "loosely-goosed-html-template",
-	"version": "0.1.5",
-	"description": "A(nother) very small HTML templating engine.",
-	"main": "lght.js",
-	"scripts": {
-		"start": "node server.js",
-		"test": "node_modules/.bin/cypress open",
-		"ci": "start-server-and-test http://localhost:8080"
-	},
-	"keywords": [
-		"html",
-		"template",
-		"js",
-		"minimal"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/marktnoonan/loosely-goosed-html-template"
-	},
-	"author": "Mark Noonan",
-	"license": "MIT",
-	"devDependencies": {
-		"cypress": "^3.0.2",
-		"parcel": "^1.9.3",
-		"start-server-and-test": "^1.5.0"
-	}
+  "name": "loosely-goosed-html-template",
+  "version": "0.1.6",
+  "description": "A(nother) very small HTML templating engine.",
+  "main": "lght.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node_modules/.bin/cypress open",
+    "ci": "start-server-and-test http://localhost:8080"
+  },
+  "keywords": [
+    "html",
+    "template",
+    "js",
+    "minimal"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marktnoonan/loosely-goosed-html-template"
+  },
+  "author": "Mark Noonan",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^3.0.2",
+    "parcel": "^1.9.3",
+    "start-server-and-test": "^1.5.0"
+  }
 }
