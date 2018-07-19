@@ -144,9 +144,21 @@ This function call will return the following string:
 '<li class="fancy" id="array-item-0">list item 1</li><li class="fancy" id="array-item-1">list item 2</li><li class="fancy" id="array-item-1">list item 3</li>'
 ```
 
-A way to use this would be to use process your data a little bit and create an object that ready for templating, instead of trying to make your template work within the structure of a JSON response you might get from an external API. As a bonus: if that API changes, you know you only need to catch those changes in your adapater function.
+A way to use this would be to use process your data a little bit and create an object that ready for templating, instead of trying to make your template work within the structure of a JSON response you might get from an external API. As a bonus: if that API changes, you know you only need to modify code related to those changes in your adapater function, and the rest of your template will be unaffected. Or you can call `lght.arrayToHTMLString` directly in your data object:
 
-This keeps all your logic in JS but bumps you up against the practical reality of why 100% purity in things like this can sometimes increase complexity and make the code itself harder to reason about.
+```js
+const someArrayOfThingsToRender = ["list item 1", "list item 2", "list item 3"];
+const nameOfYourDataObject = {
+...
+	listItems: lght.arrayToHTMLString({ array: someArrayOfThingsToRender, itemWrapperTagName: "li", wrapperTagAttributeString: 'class="fancy"' }),
+	listItemHeader: "Some list items!"
+...
+};
+```
+
+This keeps all your logic in JS but bumps you up against the practical reality of why 100% purity in things like this can sometimes increase complexity and make the code itself harder to reason about. Workaround like this for common tasks explain why major templating engines provide ways to express loops and conditionals in the template itself.
+
+
 
 ##### Unique IDs on repeated elements
 
